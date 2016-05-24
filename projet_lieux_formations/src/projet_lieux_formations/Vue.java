@@ -22,6 +22,7 @@ public class Vue extends javax.swing.JFrame {
     public Vue() {
         controleur = new Controleur();
         initComponents();
+       
     }
 
     /**
@@ -37,7 +38,7 @@ public class Vue extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jButtonImporter = new javax.swing.JMenuItem();
         jButtonImporterVilles = new javax.swing.JCheckBoxMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuAlgo = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,8 +65,9 @@ public class Vue extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Algo");
-        jMenuBar1.add(jMenu2);
+        jMenuAlgo.setText("Algo");
+        jMenuAlgo.setEnabled(false);
+        jMenuBar1.add(jMenuAlgo);
 
         setJMenuBar(jMenuBar1);
 
@@ -92,6 +94,10 @@ public class Vue extends javax.swing.JFrame {
 
         controleur.importerAgence(dialogue.getSelectedFile());
         
+        if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 0 ) {
+            jMenuAlgo.setEnabled(true);
+        }
+        
     }//GEN-LAST:event_jButtonImporterActionPerformed
 
     private void jButtonImporterVillesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImporterVillesActionPerformed
@@ -101,6 +107,10 @@ public class Vue extends javax.swing.JFrame {
         dialogue.showOpenDialog(null);
 
         controleur.importerVille(dialogue.getSelectedFile());
+        
+        if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 0) {
+            jMenuAlgo.setEnabled(true);
+        }
     }//GEN-LAST:event_jButtonImporterVillesActionPerformed
 
     /**
@@ -142,7 +152,7 @@ public class Vue extends javax.swing.JFrame {
     private javax.swing.JMenuItem jButtonImporter;
     private javax.swing.JCheckBoxMenuItem jButtonImporterVilles;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenuAlgo;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }

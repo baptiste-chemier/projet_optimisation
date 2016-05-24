@@ -12,11 +12,11 @@ package Modele;
 public class Ville {
     private String id;
     private String nom;
-    private int codePostal;
+    private String codePostal;
     private String longitude;
     private String latitude;
 
-    public Ville(String id, String nom, int codePostal, String longitude, String latitude) {
+    public Ville(String id, String nom, String codePostal, String longitude, String latitude) {
         this.id = id;
         this.nom = nom;
         this.codePostal = codePostal;
@@ -54,14 +54,14 @@ public class Ville {
     /**
      * @return the codePostal
      */
-    public int getCodePostal() {
+    public String getCodePostal() {
         return codePostal;
     }
 
     /**
      * @param codePostal the codePostal to set
      */
-    public void setCodePostal(int codePostal) {
+    public void setCodePostal(String codePostal) {
         this.codePostal = codePostal;
     }
 

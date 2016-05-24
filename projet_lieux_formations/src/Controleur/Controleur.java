@@ -22,8 +22,8 @@ import javax.swing.JOptionPane;
  */
 public class Controleur {
     
-    protected List<Ville> listeVilles;
-    protected List<Agence> listeAgences;
+    private List<Ville> listeVilles;
+    private List<Agence> listeAgences;
     
     public Controleur() {
         listeAgences = new ArrayList<>();
@@ -43,15 +43,16 @@ public class Controleur {
                     if (i != 0) {
                         String id = parts[0].replaceAll("\"", "");
                         String nom = parts[1].replaceAll("\"", "");
-                        int codePostal = Integer.parseInt(parts[2].replaceAll("\"", ""));
+                        String codePostal = parts[2].replaceAll("\"", "");
                         String longitude = parts[3].replaceAll("\"", "");
                         String latitude = parts[4].replaceAll("\"", "");
-
+                        
+                        System.out.println(id + " " + nom + " " + codePostal + " " + longitude + " " + latitude);
                         Ville ville = new Ville(id, nom, codePostal, longitude, latitude);
                         listeVilles.add(ville);
                     }
                 }
-                //System.out.println(ligne);
+                System.out.println(ligne);
                 i++;
             }
             buff.close();
@@ -79,7 +80,7 @@ public class Controleur {
                     if (i != 0) {
                         String id = parts[0].replaceAll("\"", "");
                         String nom = parts[1].replaceAll("\"", "");
-                        int codePostal = Integer.parseInt(parts[2].replaceAll("\"", ""));
+                        String codePostal = parts[2].replaceAll("\"", "");
                         String longitude = parts[3].replaceAll("\"", "");
                         String latitude = parts[4].replaceAll("\"", "");
                         int nbPersonne = Integer.parseInt(parts[5].replaceAll("\"", ""));
@@ -101,6 +102,20 @@ public class Controleur {
             JOptionPane jop3 = new JOptionPane();
             jop3.showMessageDialog(null, "Une erreur est survenue lors de l'import", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    /**
+     * @return the listeVilles
+     */
+    public List<Ville> getListeVilles() {
+        return listeVilles;
+    }
+
+    /**
+     * @return the listeAgences
+     */
+    public List<Agence> getListeAgences() {
+        return listeAgences;
     }
     
 }
