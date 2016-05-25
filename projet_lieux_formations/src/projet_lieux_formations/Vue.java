@@ -7,6 +7,7 @@ package projet_lieux_formations;
 
 import Controleur.Controleur;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,13 +35,77 @@ public class Vue extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanelTabou = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jButtonLancerTabou = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jButtonImporter = new javax.swing.JMenuItem();
-        jButtonImporterVilles = new javax.swing.JCheckBoxMenuItem();
+        jButtonImporterVilles = new javax.swing.JMenuItem();
         jMenuAlgo = new javax.swing.JMenu();
+        JMenuItemTabou = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1000, 1000));
+
+        jPanelTabou.setBorder(javax.swing.BorderFactory.createTitledBorder("Méthode Tabou"));
+        jPanelTabou.setForeground(new java.awt.Color(0, 204, 204));
+
+        jButtonLancerTabou.setText("Lancer l'algo");
+        jButtonLancerTabou.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLancerTabouActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(jButtonLancerTabou)
+                .addContainerGap(98, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(151, 151, 151)
+                .addComponent(jButtonLancerTabou)
+                .addContainerGap(326, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanelTabouLayout = new javax.swing.GroupLayout(jPanelTabou);
+        jPanelTabou.setLayout(jPanelTabouLayout);
+        jPanelTabouLayout.setHorizontalGroup(
+            jPanelTabouLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTabouLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(772, Short.MAX_VALUE))
+        );
+        jPanelTabouLayout.setVerticalGroup(
+            jPanelTabouLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanelTabou, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanelTabou, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanelTabou.setVisible(false);
 
         jMenu1.setText("Fichier");
 
@@ -54,7 +119,6 @@ public class Vue extends javax.swing.JFrame {
         jMenu1.add(jButtonImporter);
 
         jButtonImporterVilles.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        jButtonImporterVilles.setSelected(true);
         jButtonImporterVilles.setText("Importer les villes");
         jButtonImporterVilles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,7 +130,15 @@ public class Vue extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenuAlgo.setText("Algo");
-        jMenuAlgo.setEnabled(false);
+
+        JMenuItemTabou.setText("Méthode Tabou");
+        JMenuItemTabou.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMenuItemTabouActionPerformed(evt);
+            }
+        });
+        jMenuAlgo.add(JMenuItemTabou);
+
         jMenuBar1.add(jMenuAlgo);
 
         setJMenuBar(jMenuBar1);
@@ -75,11 +147,16 @@ public class Vue extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 966, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 545, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -107,11 +184,28 @@ public class Vue extends javax.swing.JFrame {
         dialogue.showOpenDialog(null);
 
         controleur.importerVille(dialogue.getSelectedFile());
-        
+
         if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 0) {
             jMenuAlgo.setEnabled(true);
         }
     }//GEN-LAST:event_jButtonImporterVillesActionPerformed
+
+    private void JMenuItemTabouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuItemTabouActionPerformed
+        // TODO add your handling code here:
+        jPanelTabou.setVisible(true);
+    }//GEN-LAST:event_JMenuItemTabouActionPerformed
+
+    private void jButtonLancerTabouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLancerTabouActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Taille Liste agence:" + controleur.getListeAgences().size());
+        System.out.println("Taille Liste Ville:" + controleur.getListeVilles().size());
+        if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 0) {
+            controleur.startTabou();
+        } else {
+            JOptionPane jop3 = new JOptionPane();
+            jop3.showMessageDialog(null, "Vous devez importer les villes et les agences avant de lancer l'algo", "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonLancerTabouActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,10 +243,15 @@ public class Vue extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem JMenuItemTabou;
     private javax.swing.JMenuItem jButtonImporter;
-    private javax.swing.JCheckBoxMenuItem jButtonImporterVilles;
+    private javax.swing.JMenuItem jButtonImporterVilles;
+    private javax.swing.JButton jButtonLancerTabou;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenuAlgo;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanelTabou;
     // End of variables declaration//GEN-END:variables
 }

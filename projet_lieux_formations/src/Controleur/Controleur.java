@@ -14,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,9 +26,12 @@ public class Controleur {
     private List<Ville> listeVilles;
     private List<Agence> listeAgences;
     
+    private List<Ville> listeVilleSelectionnees;
+    
     public Controleur() {
         listeAgences = new ArrayList<>();
         listeVilles = new ArrayList<>();
+        listeVilleSelectionnees = new ArrayList<>();
         
     }
     public void importerVille(File file) {
@@ -52,7 +56,7 @@ public class Controleur {
                         listeVilles.add(ville);
                     }
                 }
-                System.out.println(ligne);
+                //System.out.println(ligne);
                 i++;
             }
             buff.close();
@@ -142,6 +146,69 @@ public class Controleur {
         dist = dist * 60 * 1.1515;
         
         return dist * 1.609344;
+    }
+
+    /**
+     * @return the listeVilleSelectionnees
+     */
+    public List<Ville> getListeVilleSelectionnees() {
+        return listeVilleSelectionnees;
+    }
+    
+    public void genererSolutionInitiale() {
+        for (int i = 0; i< listeAgences.size(); i++){
+            Random rand = new Random();
+            int indice = rand.nextInt(listeVilles.size()-1);
+            
+            int nbPlaceRestante = listeVilles.get(indice).getNbPlacesRestantes();
+            if (nbPlaceRestante >= listeAgences.get(i).getNbPersonne()) {
+                listeAgences.get(i).setIdLieuFormation(listeVilles.get(indice).getId()); //Set de l'id du lieu de formation à l'agence
+                listeAgences.get(i).setIndexOfLieuFormation(indice); //Set de l'indice du lieu de formation dans l'agence
+                listeVilles.get(indice).getListeAgences().add(listeAgences.get(i)); //Ajout de l'agence comme agence du lieu de formation
+
+                listeVilles.get(indice).setIsOpen(true); //On ouvre le lieu de formation
+
+                int nbPlaceRestanteNew = nbPlaceRestante - listeAgences.get(i).getNbPersonne();
+                listeVilles.get(indice).setNbPlacesRestantes(nbPlaceRestanteNew); //gestion du nombre de places restantes
+            }
+            double distance = getDistance(listeAgences.get(i).getLatitude(), listeAgences.get(i).getLongitude(), listeVilles.get(listeAgences.get(i).getIndexOfLieuFormation()).getLatitude(), listeVilles.get(listeAgences.get(i).getIndexOfLieuFormation()).getLongitude());
+            
+            System.out.println("Agence: " + listeAgences.get(i).getNom() + " | Lieu de formation associé: " + listeVilles.get(listeAgences.get(i).getIndexOfLieuFormation()).getNom() + " | Distance: " + distance);
+        }
+        double priceTranport = getPriceTransport();
+        double priceOpen = getPriceLieuxOpen();
+        double priceTotal = priceOpen + priceTranport;
+        
+        System.out.println("Cout de transport total : " + priceTranport);
+        System.out.println("Cout d'ouverture des lieux: " + priceOpen);
+        System.out.println("Cout total: " + priceTotal);
+        
+    }
+    
+    public double getPriceTransport() {
+        double price = 0;
+        for (Agence listeAgence : listeAgences) {
+            Ville lieuFormation = listeVilles.get(listeAgence.getIndexOfLieuFormation());
+            double distance = 2*getDistance(listeAgence.getLatitude(), listeAgence.getLongitude(), lieuFormation.getLatitude(), lieuFormation.getLongitude()); //On gère l'aller retour
+            price += 0.4 * listeAgence.getNbPersonne() * distance;
+        }
+        return price;
+    }
+    
+    public double getPriceLieuxOpen() {
+        double price = 0;
+        for (int i =0; i< listeVilles.size(); i++) {
+            if (listeVilles.get(i).getIsOpen()) {
+                price += 3000;
+            }
+        }
+        return price;
+    }
+    
+    public void startTabou() {
+        
+        //Initialisation
+        genererSolutionInitiale();
     }
     
 }

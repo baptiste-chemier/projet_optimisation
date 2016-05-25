@@ -5,6 +5,9 @@
  */
 package Modele;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Epulapp
@@ -15,6 +18,10 @@ public class Ville {
     private String codePostal;
     private String longitude;
     private String latitude;
+    
+    private int nbPlacesRestantes;   
+    private List<Agence> listeAgences;
+    private boolean isOpen;
 
     public Ville(String id, String nom, String codePostal, String longitude, String latitude) {
         this.id = id;
@@ -22,6 +29,10 @@ public class Ville {
         this.codePostal = codePostal;
         this.longitude = longitude;
         this.latitude = latitude;
+        
+        this.nbPlacesRestantes = 60;
+        this.listeAgences = new ArrayList<Agence>();
+                
     }
     /**
      * @return the id
@@ -91,5 +102,40 @@ public class Ville {
      */
     public void setLatitude(String latitude) {
         this.latitude = latitude;
+    }
+
+    /**
+     * @return the nbPlacesRestantes
+     */
+    public int getNbPlacesRestantes() {
+        return nbPlacesRestantes;
+    }
+
+    /**
+     * @param nbPlacesRestantes the nbPlacesRestantes to set
+     */
+    public void setNbPlacesRestantes(int nbPlacesRestantes) {
+        this.nbPlacesRestantes = nbPlacesRestantes;
+    }
+
+    /**
+     * @return the listeAgences
+     */
+    public List<Agence> getListeAgences() {
+        return listeAgences;
+    }
+
+    /**
+     * @return the isOpen
+     */
+    public boolean getIsOpen() {
+        return isOpen;
+    }
+
+    /**
+     * @param isChosen the isOpen to set
+     */
+    public void setIsOpen(boolean isOpen) {
+        this.isOpen = isOpen;
     }
 }
