@@ -19,6 +19,7 @@ public class Agence {
     
     private String idLieuFormation;
     private int indexOfLieuFormation; //Sauvegarde de l'index afin de gagner du temps d'exécution lors de la recherche du lieu de formation
+    private int indexOfLastLieuFormation; //Sauvegarde de l'index de l'ancien lieu de formation dans le cas d'un changement.
     
     public Agence(String id, String nom, String codePostal, String longitude, String latitude, int nbPersonne) {
         this.id = id;
@@ -140,5 +141,19 @@ public class Agence {
      */
     public void setIndexOfLieuFormation(int indexOfLieuFormation) {
         this.indexOfLieuFormation = indexOfLieuFormation;
+    }
+
+    /**
+     * @return the indexOfLastLieuFormation
+     */
+    public int getIndexOfLastLieuFormation() {
+        return indexOfLastLieuFormation;
+    }
+
+    /**
+     * @param indexOfLastLieuFormation the indexOfLastLieuFormation to set
+     */
+    public void setIndexOfLastLieuFormation(int indexOfLastLieuFormation) {
+        this.indexOfLastLieuFormation = indexOfLastLieuFormation;
     }
 }

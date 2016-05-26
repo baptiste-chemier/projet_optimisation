@@ -6,6 +6,7 @@
 package Controleur;
 
 import Modele.Agence;
+import Modele.Solution;
 import Modele.Ville;
 import java.io.BufferedReader;
 import java.util.List;
@@ -25,13 +26,14 @@ public class Controleur {
     
     private List<Ville> listeVilles;
     private List<Agence> listeAgences;
+    private Solution solution;
     
-    private List<Ville> listeVilleSelectionnees;
     
     public Controleur() {
         listeAgences = new ArrayList<>();
         listeVilles = new ArrayList<>();
-        listeVilleSelectionnees = new ArrayList<>();
+        solution = new Solution();
+        
         
     }
     public void importerVille(File file) {
@@ -51,7 +53,7 @@ public class Controleur {
                         String longitude = parts[3].replaceAll("\"", "");
                         String latitude = parts[4].replaceAll("\"", "");
                         
-                        System.out.println(id + " " + nom + " " + codePostal + " " + longitude + " " + latitude);
+                        //System.out.println(id + " " + nom + " " + codePostal + " " + longitude + " " + latitude);
                         Ville ville = new Ville(id, nom, codePostal, longitude, latitude);
                         listeVilles.add(ville);
                     }
@@ -148,12 +150,6 @@ public class Controleur {
         return dist * 1.609344;
     }
 
-    /**
-     * @return the listeVilleSelectionnees
-     */
-    public List<Ville> getListeVilleSelectionnees() {
-        return listeVilleSelectionnees;
-    }
     
     public void genererSolutionInitiale() {
         for (int i = 0; i< listeAgences.size(); i++){
@@ -177,11 +173,13 @@ public class Controleur {
         }
         double priceTranport = getPriceTransport();
         double priceOpen = getPriceLieuxOpen();
-        double priceTotal = priceOpen + priceTranport;
+        double totalPrice = priceOpen + priceTranport;
         
-        System.out.println("Cout de transport total : " + priceTranport);
-        System.out.println("Cout d'ouverture des lieux: " + priceOpen);
-        System.out.println("Cout total: " + priceTotal);
+        this.solution.setTotalPrice(totalPrice);
+        this.solution.setListeAgences(listeAgences);
+        this.solution.setListeLieuxFormation(getLieuxFormation());
+                
+        System.out.println("Cout total: " + totalPrice);
         
     }
     
@@ -197,18 +195,59 @@ public class Controleur {
     
     public double getPriceLieuxOpen() {
         double price = 0;
-        for (int i =0; i< listeVilles.size(); i++) {
-            if (listeVilles.get(i).getIsOpen()) {
+        for (Ville listeVille : listeVilles) {
+            if (listeVille.getIsOpen()) {
                 price += 3000;
             }
         }
         return price;
     }
     
+    public void genererVoisinage() {
+        
+        //passage par des variables temporaires
+        List<Ville> lieuxFormationTmp = this.listeVilles;
+        List<Agence> agenceTmp = this.solution.getListeAgences();
+        
+        for (int i = 0; i<agenceTmp.size(); i++) {
+            Random rand = new Random();
+            int indice = rand.nextInt(lieuxFormationTmp.size() - 1);
+            double price = this.solution.getTotalPrice();
+            
+            int nbPlaceRestante = lieuxFormationTmp.get(indice).getNbPlacesRestantes();
+            if (nbPlaceRestante >= agenceTmp.get(i).getNbPersonne()) {
+                agenceTmp.get(i).setIdLieuFormation(lieuxFormationTmp.get(indice).getId()); //Set de l'id du lieu de formation à l'agence
+                agenceTmp.get(i).setIndexOfLieuFormation(indice); //Set de l'indice du lieu de formation dans l'agence
+                lieuxFormationTmp.get(indice).getListeAgences().add(agenceTmp.get(i)); //Ajout de l'agence comme agence du lieu de formation
+                
+                //Ajout du calcul du cout de transport pour ce nouveau lieu.
+                double distance = 2 * getDistance(agenceTmp.get(i).getLatitude(), agenceTmp.get(i).getLongitude(), lieuxFormationTmp.get(indice).getLatitude(), lieuxFormationTmp.get(indice).getLongitude()); //On gère l'aller retour
+                price += 0.4 * agenceTmp.get(i).getNbPersonne() * distance;
+                
+                //Soustraction de l'ancien cout de transport pour ce nouveau lieu
+                double distanceOld = 2 * getDistance(agenceTmp.get(i).getLatitude(), agenceTmp.get(i).getLongitude(), lieuxFormationTmp.get(indice).getLatitude(), lieuxFormationTmp.get(indice).getLongitude()); //On gère l'aller retour
+                price -= 0.4 * agenceTmp.get(i).getNbPersonne() * distanceOld;
+                
+            }
+        }
+    }
+    
     public void startTabou() {
         
         //Initialisation
         genererSolutionInitiale();
+        genererVoisinage();
     }
+    
+    public List<Ville> getLieuxFormation() {
+        List<Ville> lieuFormation = new ArrayList();
+        for (Ville listeVille : listeVilles) {
+            if (listeVille.getIsOpen()) {
+                lieuFormation.add(listeVille);
+            }
+        }
+        return lieuFormation;
+    }
+
     
 }
