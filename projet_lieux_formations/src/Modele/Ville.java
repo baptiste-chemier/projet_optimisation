@@ -5,6 +5,7 @@
  */
 package Modele;
 
+import Outils.Outils;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class Ville {
         this.latitude = latitude;
         
         this.nbPlacesRestantes = 60;
+        this.isOpen = false;
         this.listeAgences = new ArrayList<Agence>();
                 
     }
@@ -138,4 +140,45 @@ public class Ville {
     public void setIsOpen(boolean isOpen) {
         this.isOpen = isOpen;
     }
+    
+    public int getNbPersonnePresente() 
+    {
+        int nbPersonne = 0;
+        for (int i = 0; i< listeAgences.size(); i++ ) {
+            nbPersonne += listeAgences.get(i).getNbPersonne();
+        }
+       return nbPersonne;
+    }
+    
+    public int calculPlaceRestante() 
+    {
+        int nbPlacesRestantes = getNbPlacesRestantes();
+        int nbPersonnesPresentes = getNbPersonnePresente();
+        int nbPlacesRestantesCalc = 60 - nbPersonnesPresentes;
+        
+        if (nbPlacesRestantes == nbPlacesRestantesCalc) {
+            return nbPlacesRestantesCalc;
+        } else {
+            return 0;
+        }        
+    }
+    
+    public double getPriceForLF() 
+    {
+        double price = 0;
+        if (this.getIsOpen() == true) {
+            price += 3000;
+        }
+        
+        for (int i = 0; i< listeAgences.size(); i++ ) {
+            double distance = 2* Outils.getDistance(listeAgences.get(i).getLatitude(), listeAgences.get(i).getLongitude(), getLatitude(), getLongitude());
+            price += 0.4 * listeAgences.get(i).getNbPersonne() * distance;
+        }
+        
+        return price;
+    }
+    
+    
+    
+
 }

@@ -5,6 +5,8 @@
  */
 package Modele;
 
+import Outils.Outils;
+
 /**
  *
  * @author Epulapp
@@ -21,6 +23,7 @@ public class Agence {
     private int indexOfLieuFormation; //Sauvegarde de l'index afin de gagner du temps d'exécution lors de la recherche du lieu de formation
     private int indexOfLastLieuFormation; //Sauvegarde de l'index de l'ancien lieu de formation dans le cas d'un changement.
     
+    
     public Agence(String id, String nom, String codePostal, String longitude, String latitude, int nbPersonne) {
         this.id = id;
         this.nom = nom;
@@ -28,7 +31,7 @@ public class Agence {
         this.longitude = longitude;
         this.latitude = latitude;
         this.nbPersonne = nbPersonne;
-
+        this.indexOfLieuFormation = -1;
     }
 
     /**
@@ -155,5 +158,14 @@ public class Agence {
      */
     public void setIndexOfLastLieuFormation(int indexOfLastLieuFormation) {
         this.indexOfLastLieuFormation = indexOfLastLieuFormation;
+    }
+    
+    public double getPriceForTransportForAgenceToLF(Ville lF)
+    {
+        double price = 0;
+        double distance = 2 * Outils.getDistance(getLatitude(), getLongitude(), lF.getLatitude(), lF.getLongitude());
+        price += 0.4 *getNbPersonne() * distance;
+        
+        return price;
     }
 }

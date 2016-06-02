@@ -6,6 +6,11 @@
 package projet_lieux_formations;
 
 import Controleur.Controleur;
+import Modele.Agence;
+import Modele.Solution;
+import Modele.Ville;
+import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -21,7 +26,7 @@ public class Vue extends javax.swing.JFrame {
      * Creates new form Vue
      */
     public Vue() {
-        controleur = new Controleur();
+        controleur = new Controleur(this);
         initComponents();
        
     }
@@ -36,26 +41,60 @@ public class Vue extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanelTabou = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButtonLancerTabou = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jButtonImporter = new javax.swing.JMenuItem();
-        jButtonImporterVilles = new javax.swing.JMenuItem();
-        jMenuAlgo = new javax.swing.JMenu();
-        JMenuItemTabou = new javax.swing.JMenuItem();
+        jBImportAgences = new javax.swing.JButton();
+        jBImportVille = new javax.swing.JButton();
+        jLabelNbAgences = new javax.swing.JLabel();
+        jLabelNbVilles = new javax.swing.JLabel();
+        jBStartTabou = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListLF = new javax.swing.JList();
+        jLabelNbLF = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabelCoutTotal = new javax.swing.JLabel();
+        jPanelInfosLF = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabelVille = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabelCP = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabelNbAgenceForVille = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabelCoutTotalForLF = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jListAgenceParLF = new javax.swing.JList();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabelNbPersonne = new javax.swing.JLabel();
+        jLabelNbPlaceRestance = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 1000));
 
-        jPanelTabou.setBorder(javax.swing.BorderFactory.createTitledBorder("Méthode Tabou"));
-        jPanelTabou.setForeground(new java.awt.Color(0, 204, 204));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Méthode Tabou", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 102, 102)));
 
-        jButtonLancerTabou.setText("Lancer l'algo");
-        jButtonLancerTabou.addActionListener(new java.awt.event.ActionListener() {
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Paramètres", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 204)));
+
+        jBImportAgences.setText("Importer les agences");
+        jBImportAgences.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLancerTabouActionPerformed(evt);
+                jBImportAgencesActionPerformed(evt);
+            }
+        });
+
+        jBImportVille.setText("Importer les villes");
+        jBImportVille.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBImportVilleActionPerformed(evt);
+            }
+        });
+
+        jBStartTabou.setText("Lancer l'agorithme");
+        jBStartTabou.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBStartTabouActionPerformed(evt);
             }
         });
 
@@ -64,30 +103,178 @@ public class Vue extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(jButtonLancerTabou)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jBImportAgences)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelNbAgences, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jBStartTabou, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jBImportVille, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelNbVilles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(151, 151, 151)
-                .addComponent(jButtonLancerTabou)
-                .addContainerGap(326, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBImportAgences)
+                    .addComponent(jLabelNbAgences, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBImportVille)
+                    .addComponent(jLabelNbVilles))
+                .addGap(40, 40, 40)
+                .addComponent(jBStartTabou)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanelTabouLayout = new javax.swing.GroupLayout(jPanelTabou);
-        jPanelTabou.setLayout(jPanelTabouLayout);
-        jPanelTabouLayout.setHorizontalGroup(
-            jPanelTabouLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTabouLayout.createSequentialGroup()
+        jBStartTabou.setVisible(false);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Résultats", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 51, 204)));
+
+        jListLF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListLFMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jListLF);
+
+        jLabelNbLF.setText("sd");
+
+        jLabel7.setText("Coût total ");
+
+        jLabel8.setText("Nb Lieux formation :");
+
+        jLabelCoutTotal.setText("jLabel9");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(772, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelNbLF, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelCoutTotal)
+                        .addGap(0, 109, Short.MAX_VALUE)))
+                .addContainerGap())
         );
-        jPanelTabouLayout.setVerticalGroup(
-            jPanelTabouLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelNbLF)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabelCoutTotal)))
+        );
+
+        jPanelInfosLF.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informations", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 51, 204)));
+
+        jLabel1.setText("Nom");
+
+        jLabelVille.setText("jLabelVille");
+
+        jLabel3.setText("Code postal");
+
+        jLabelCP.setText("jLabel4");
+
+        jLabel2.setText("Nombre d'agences : ");
+
+        jLabelNbAgenceForVille.setText("jLabel4");
+
+        jLabel4.setText("Coût pour ce lieu:");
+
+        jLabelCoutTotalForLF.setText("jLabel5");
+
+        jScrollPane2.setViewportView(jListAgenceParLF);
+
+        jLabel5.setText("Nombre de personne");
+
+        jLabel6.setText("Places restances");
+
+        jLabelNbPersonne.setText("jLabel7");
+
+        jLabelNbPlaceRestance.setText("jLabel7");
+
+        javax.swing.GroupLayout jPanelInfosLFLayout = new javax.swing.GroupLayout(jPanelInfosLF);
+        jPanelInfosLF.setLayout(jPanelInfosLFLayout);
+        jPanelInfosLFLayout.setHorizontalGroup(
+            jPanelInfosLFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelInfosLFLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelInfosLFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(jPanelInfosLFLayout.createSequentialGroup()
+                        .addGroup(jPanelInfosLFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelInfosLFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelVille, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelCoutTotalForLF)
+                            .addComponent(jLabelNbAgenceForVille, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelInfosLFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelInfosLFLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelCP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanelInfosLFLayout.createSequentialGroup()
+                                .addGroup(jPanelInfosLFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(27, 27, 27)
+                                .addGroup(jPanelInfosLFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelNbPlaceRestance)
+                                    .addComponent(jLabelNbPersonne))
+                                .addGap(0, 72, Short.MAX_VALUE)))))
+                .addContainerGap())
+        );
+        jPanelInfosLFLayout.setVerticalGroup(
+            jPanelInfosLFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelInfosLFLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelInfosLFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabelVille)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabelCP))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelInfosLFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabelNbAgenceForVille)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabelNbPersonne))
+                .addGroup(jPanelInfosLFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelInfosLFLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelInfosLFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabelCoutTotalForLF)))
+                    .addGroup(jPanelInfosLFLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanelInfosLFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabelNbPlaceRestance))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -95,53 +282,26 @@ public class Vue extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanelTabou, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanelInfosLF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanelTabou, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanelInfosLF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-
-        jPanelTabou.setVisible(false);
-
-        jMenu1.setText("Fichier");
-
-        jButtonImporter.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
-        jButtonImporter.setText("Importer les agences");
-        jButtonImporter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonImporterActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jButtonImporter);
-
-        jButtonImporterVilles.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        jButtonImporterVilles.setText("Importer les villes");
-        jButtonImporterVilles.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonImporterVillesActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jButtonImporterVilles);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenuAlgo.setText("Algo");
-
-        JMenuItemTabou.setText("Méthode Tabou");
-        JMenuItemTabou.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JMenuItemTabouActionPerformed(evt);
-            }
-        });
-        jMenuAlgo.add(JMenuItemTabou);
-
-        jMenuBar1.add(jMenuAlgo);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,41 +322,33 @@ public class Vue extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonImporterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImporterActionPerformed
-        // TODO add your handling code here:
-
+    private void jBImportAgencesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBImportAgencesActionPerformed
         JFileChooser dialogue = new JFileChooser();
 
         dialogue.showOpenDialog(null);
 
         controleur.importerAgence(dialogue.getSelectedFile());
+        jLabelNbAgences.setText(controleur.getListeAgences().size() + " agence(s) importée(s)");
         
-        if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 0 ) {
-            jMenuAlgo.setEnabled(true);
+        if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 00) {
+            jBStartTabou.setVisible(true);
         }
-        
-    }//GEN-LAST:event_jButtonImporterActionPerformed
+    }//GEN-LAST:event_jBImportAgencesActionPerformed
 
-    private void jButtonImporterVillesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImporterVillesActionPerformed
-        // TODO add your handling code here:
+    private void jBImportVilleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBImportVilleActionPerformed
         JFileChooser dialogue = new JFileChooser();
 
         dialogue.showOpenDialog(null);
 
         controleur.importerVille(dialogue.getSelectedFile());
-
-        if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 0) {
-            jMenuAlgo.setEnabled(true);
+        jLabelNbVilles.setText(controleur.getListeVilles().size() + " ville(s) importée(s)");
+        
+        if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 00) {
+            jBStartTabou.setVisible(true);
         }
-    }//GEN-LAST:event_jButtonImporterVillesActionPerformed
+    }//GEN-LAST:event_jBImportVilleActionPerformed
 
-    private void JMenuItemTabouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuItemTabouActionPerformed
-        // TODO add your handling code here:
-        jPanelTabou.setVisible(true);
-    }//GEN-LAST:event_JMenuItemTabouActionPerformed
-
-    private void jButtonLancerTabouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLancerTabouActionPerformed
-        // TODO add your handling code here:
+    private void jBStartTabouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBStartTabouActionPerformed
         System.out.println("Taille Liste agence:" + controleur.getListeAgences().size());
         System.out.println("Taille Liste Ville:" + controleur.getListeVilles().size());
         if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 0) {
@@ -205,7 +357,12 @@ public class Vue extends javax.swing.JFrame {
             JOptionPane jop3 = new JOptionPane();
             jop3.showMessageDialog(null, "Vous devez importer les villes et les agences avant de lancer l'algo", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButtonLancerTabouActionPerformed
+    }//GEN-LAST:event_jBStartTabouActionPerformed
+
+    private void jListLFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListLFMouseClicked
+        jPanelInfosLF.setVisible(true);
+        afficheInfosFromLF(controleur.getLieuxFormation().get(jListLF.getSelectedIndex()));
+    }//GEN-LAST:event_jListLFMouseClicked
 
     /**
      * @param args the command line arguments
@@ -241,17 +398,73 @@ public class Vue extends javax.swing.JFrame {
             }
         });
     }
+    public void afficheInfos() {
+         DefaultListModel list = new DefaultListModel();
+         Solution solution = controleur.getSolution();
+         List<Ville> listeLF = controleur.getLieuxFormation();
+         int nbAgenceTotal = 0;
+         double cost = 0;
+        for(int i = 0; i<listeLF.size(); i++) {
+            int nbAgence = listeLF.get(i).getListeAgences().size();
+            nbAgenceTotal += nbAgence;
+            cost += listeLF.get(i).getPriceForLF();
+            list.addElement(listeLF.get(i).getNom() + " - " + listeLF.get(i).getCodePostal() + " ( " + nbAgence + " )");   
+        }
+        
+        jListLF.setModel(list);
+        jLabelNbLF.setText(nbAgenceTotal + " | " + listeLF.size());
+        jLabelCoutTotal.setText(solution.getTotalPrice() + " calc: " + cost);
+    }
+    
+    public void afficheInfosFromLF(Ville lF) {
+        DefaultListModel list = new DefaultListModel();
+        
+        jLabelVille.setText(lF.getNom());
+        jLabelCP.setText(lF.getCodePostal());
+        jLabelNbAgenceForVille.setText(lF.getListeAgences().size() + "");
+        jLabelNbPersonne.setText(lF.getNbPersonnePresente() + "");
+        jLabelNbPlaceRestance.setText(lF.calculPlaceRestante() + "");
+        jLabelCoutTotalForLF.setText(lF.getPriceForLF() + "");
+       
+        Solution solution = controleur.getSolution();
+        List<Ville> listeLF = controleur.getLieuxFormation();
+        int nbAgenceTotal = 0;
+        for (int i = 0; i < lF.getListeAgences().size(); i++) {
+            Agence agence = lF.getListeAgences().get(i);
+            list.addElement(agence.getNom() + " - " + agence.getCodePostal() + " ( " + agence.getNbPersonne() + " personnes soit " + agence.getPriceForTransportForAgenceToLF(lF)+ " € de transport )");
+        }
+        jListAgenceParLF.setModel(list);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem JMenuItemTabou;
-    private javax.swing.JMenuItem jButtonImporter;
-    private javax.swing.JMenuItem jButtonImporterVilles;
-    private javax.swing.JButton jButtonLancerTabou;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenuAlgo;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JButton jBImportAgences;
+    private javax.swing.JButton jBImportVille;
+    private javax.swing.JButton jBStartTabou;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelCP;
+    private javax.swing.JLabel jLabelCoutTotal;
+    private javax.swing.JLabel jLabelCoutTotalForLF;
+    private javax.swing.JLabel jLabelNbAgenceForVille;
+    private javax.swing.JLabel jLabelNbAgences;
+    private javax.swing.JLabel jLabelNbLF;
+    private javax.swing.JLabel jLabelNbPersonne;
+    private javax.swing.JLabel jLabelNbPlaceRestance;
+    private javax.swing.JLabel jLabelNbVilles;
+    private javax.swing.JLabel jLabelVille;
+    private javax.swing.JList jListAgenceParLF;
+    private javax.swing.JList jListLF;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanelTabou;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanelInfosLF;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

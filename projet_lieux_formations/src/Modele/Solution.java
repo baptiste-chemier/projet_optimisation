@@ -5,6 +5,7 @@
  */
 package Modele;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,10 +16,15 @@ import java.util.List;
 public class Solution {
     
     private List<Ville> listeLieuxFormation;
+    private List<Ville> listeVilles;
     private double totalPrice;
     private List<Agence> listeAgences;
     private LinkedList<Agence> listeTabou;
     public int sizeTabou = 1;
+
+    
+    private int nbMoins;
+    private int nbPlus;
 
     public Solution() {
         // On sauvegarde dans cette liste les agences ayant un indexOfLastLieuFormation non nul ce qui signifie
@@ -82,5 +88,58 @@ public class Solution {
         }
         listeTabou.addLast(agence);
     }
+
+    /**
+     * @return the listeVilles
+     */
+    public List<Ville> getListeVilles() {
+        return listeVilles;
+    }
+
+    /**
+     * @param listeVilles the listeVilles to set
+     */
+    public void setListeVilles(List<Ville> listeVilles) {
+        this.listeVilles = listeVilles;
+    }
+
+    /**
+     * @return the nbMoins
+     */
+    public int getNbMoins() {
+        return nbMoins;
+    }
+
+    /**
+     * @param nbMoins the nbMoins to set
+     */
+    public void setNbMoins(int nbMoins) {
+        this.nbMoins = nbMoins;
+    }
+
+    /**
+     * @return the nbPlus
+     */
+    public int getNbPlus() {
+        return nbPlus;
+    }
+
+    /**
+     * @param nbPlus the nbPlus to set
+     */
+    public void setNbPlus(int nbPlus) {
+        this.nbPlus = nbPlus;
+    }
+    
+    public List<Ville> controlOpen() {
+        List<Ville> lieuFormation = new ArrayList();
+        for (Ville listeVille : listeVilles) {
+            if (listeVille.getIsOpen()) {
+                lieuFormation.add(listeVille);
+            }
+        }
+        return lieuFormation;
+    }
+        
     
 }
