@@ -9,10 +9,12 @@ import Modele.Agence;
 import Modele.Solution;
 import Modele.Ville;
 import Outils.Outils;
+import java.awt.HeadlessException;
 import java.io.BufferedReader;
 import java.util.List;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -30,7 +32,9 @@ public class Controleur {
     private List<Ville> listeVilles;
     private List<Agence> listeAgences;
     private Solution solution;
+    
     private List<Ville> listeVilleCloseWithoutAgence;
+    private List<Agence> listeAgenceWithoutLF;
     
     private Vue vue;
     
@@ -39,6 +43,7 @@ public class Controleur {
         listeAgences = new ArrayList<>();
         listeVilles = new ArrayList<>();
         listeVilleCloseWithoutAgence = new ArrayList<>();
+        listeAgenceWithoutLF = new ArrayList<>();
         solution = new Solution();
         this.vue = vue;
         
@@ -72,14 +77,12 @@ public class Controleur {
                 i++;
             }
             buff.close();
-            JOptionPane jop1 = new JOptionPane();
-            jop1.showMessageDialog(null, "Import terminé", "Information", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Import terminé", "Information", JOptionPane.INFORMATION_MESSAGE);
 
-        } catch (Exception e) {
+        } catch (IOException | HeadlessException e) {
             System.out.println(e.toString());
             //Boîte du message d'erreur
-            JOptionPane jop3 = new JOptionPane();
-            jop3.showMessageDialog(null, "Une erreur est survenue lors de l'import", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Une erreur est survenue lors de l'import", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -103,23 +106,29 @@ public class Controleur {
 
                         Agence agence = new Agence(id, nom, codePostal, longitude, latitude, nbPersonne);
                         listeAgences.add(agence);
+                        Agence a = new Agence (id, nom, codePostal, longitude, latitude, nbPersonne);
+                        listeAgenceWithoutLF.add(a);
                     }
                 }
                 //System.out.println(ligne);
                 i++;
             }
             buff.close();
-            JOptionPane jop1 = new JOptionPane();
-            jop1.showMessageDialog(null, "Import terminé", "Information", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Import terminé", "Information", JOptionPane.INFORMATION_MESSAGE);
 
-        } catch (Exception e) {
+        } catch (IOException | NumberFormatException | HeadlessException e) {
             System.out.println(e.toString());
             //Boîte du message d'erreur
-            JOptionPane jop3 = new JOptionPane();
-            jop3.showMessageDialog(null, "Une erreur est survenue lors de l'import", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Une erreur est survenue lors de l'import", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }
 
+    public void initialisation() 
+    {
+        listeAgences = cloneListeAgence(listeAgenceWithoutLF);
+        listeVilles = cloneListVille(listeVilleCloseWithoutAgence);
+    }
+    
     /**
      * @return the listeVilles
      */
@@ -314,12 +323,12 @@ public class Controleur {
             }
         }
         
-        //System.out.println("Nb LF: " + getLieuFormationFromAgence(meilleurVoisin.getListeAgences()).size());
         return meilleurVoisin;
     }
     
     public void startTabou() {
         
+        initialisation();
         long debut = System.currentTimeMillis();
         //Initialisation
         genererSolutionInitiale();
