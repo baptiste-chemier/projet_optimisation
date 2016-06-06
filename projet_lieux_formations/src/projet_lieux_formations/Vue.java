@@ -512,8 +512,8 @@ public class Vue extends javax.swing.JFrame {
         }
         
         jListLF.setModel(list);
-        jLabelNbLF.setText(nbAgenceTotal + " | " + listeLF.size());
-        jLabelCoutTotal.setText(solution.getTotalPrice() + " calc: " + cost);
+        jLabelNbLF.setText(listeLF.size() + "");
+        jLabelCoutTotal.setText(solution.getPrice() + "");
     }
     
     public void afficheInfosFromLF(Ville lF) {

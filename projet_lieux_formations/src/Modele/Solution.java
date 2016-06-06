@@ -140,6 +140,16 @@ public class Solution {
         }
         return lieuFormation;
     }
+    
+    public double getPrice()
+    {
+        double price = 0;
+        for (int i = 0; i < listeVilles.size(); i++ ) {
+            price += listeVilles.get(i).getPriceForLF();
+        }
+        
+        return Math.round(price);
+    }
         
     
 }

@@ -175,7 +175,7 @@ public class Ville {
             price += 0.4 * listeAgences.get(i).getNbPersonne() * distance;
         }
         
-        return price;
+        return Math.round(price);
     }
     
     
