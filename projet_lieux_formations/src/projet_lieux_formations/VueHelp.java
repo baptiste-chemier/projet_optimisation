@@ -37,7 +37,7 @@ public class VueHelp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextPane2.setText("\nAfin de lancer l'algorithme, vous devez avoir préalablement importé des agences puis des lieux de formation.\n\nUne fois cela fait, vous pouvez lancer l'algorithme.\n\nLorsque celui-ci est terminé, la liste des lieux de formation s'affiche puis, lorsque vous cliquez sur l'un d'eux, des informations sur celui-ci s'affichent.");
+        jTextPane2.setText("\nAfin de lancer l'algorithme, vous devez avoir préalablement importé des agences puis des lieux de formation.\n\nUne fois cela fait, vous pouvez lancer l'algorithme.\n\nLorsque celui-ci est terminé, par défaut, la liste des lieux de formation s'affiche puis, lorsque vous cliquez sur l'un d'eux, des informations sur celui-ci s'affichent.\n\nCependant, vous pouvez également visualiser la liste des Agences afin d'avoir des informations sur celles-ci et notamment le lieu de formation de l'agence. ");
         jTextPane2.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextPane2.setEnabled(false);
         jScrollPane1.setViewportView(jTextPane2);
@@ -66,10 +66,10 @@ public class VueHelp extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonOk)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -85,7 +85,8 @@ public class VueHelp extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
