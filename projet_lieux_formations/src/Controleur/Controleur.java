@@ -326,7 +326,7 @@ public class Controleur {
         return meilleurVoisin;
     }
     
-    public void startTabou() {
+    public void startTabou(int nbIte) {
         
         initialisation();
         long debut = System.currentTimeMillis();
@@ -355,7 +355,7 @@ public class Controleur {
         System.out.println("Nombre de LF après init: " + test.size());
         System.out.println("Nombre Lf selon solution" + getSolution().controlOpen().size());
         
-        for (int i = 0; i<500; i++) {
+        for (int i = 0; i<nbIte; i++) {
             Solution s = genererVoisinage();
             List<Ville> villeCLose = new ArrayList<>();
             villeCLose.addAll(cloneListVille(getListeVilleCloseWithoutAgence()));
@@ -381,9 +381,10 @@ public class Controleur {
             }
             
         }  
-        System.out.println("End");
+        
         long end = System.currentTimeMillis();
 
+        
         System.out.println(        String.format("%d min, %d sec",
                 TimeUnit.MILLISECONDS.toMinutes(end-debut),
                 TimeUnit.MILLISECONDS.toSeconds(end-debut)

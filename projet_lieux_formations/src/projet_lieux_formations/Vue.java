@@ -9,9 +9,11 @@ import Controleur.Controleur;
 import Modele.Agence;
 import Modele.Solution;
 import Modele.Ville;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,13 +23,16 @@ import javax.swing.JOptionPane;
 public class Vue extends javax.swing.JFrame {
 
     protected Controleur controleur;
+    private int nbIte;
     
     /**
      * Creates new form Vue
      */
     public Vue() {
         controleur = new Controleur(this);
+        nbIte = 1000;
         initComponents();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        
     }
 
@@ -40,20 +45,8 @@ public class Vue extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jBImportAgences = new javax.swing.JButton();
-        jBImportVille = new javax.swing.JButton();
-        jLabelNbAgences = new javax.swing.JLabel();
-        jLabelNbVilles = new javax.swing.JLabel();
-        jBStartTabou = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListLF = new javax.swing.JList();
-        jLabelNbLF = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabelCoutTotal = new javax.swing.JLabel();
         jPanelInfosLF = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabelVille = new javax.swing.JLabel();
@@ -69,121 +62,34 @@ public class Vue extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabelNbPersonne = new javax.swing.JLabel();
         jLabelNbPlaceRestance = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListLF = new javax.swing.JList();
+        jLabelNbLF = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabelCoutTotal = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jBImportAgences = new javax.swing.JButton();
+        jBImportVille = new javax.swing.JButton();
+        jBStartTabou = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jTextFieldNbIte = new javax.swing.JTextField();
+        jLabelNbAgences = new javax.swing.JLabel();
+        jLabelNbVilles = new javax.swing.JLabel();
+        jButtonHelp = new javax.swing.JButton();
+
+        jLabel9.setText("jLabel9");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1000, 1000));
+        setMinimumSize(new java.awt.Dimension(1500, 1000));
+        setPreferredSize(new java.awt.Dimension(1500, 700));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Méthode Tabou", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 102, 102)));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Paramètres", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 204)));
-
-        jBImportAgences.setText("Importer les agences");
-        jBImportAgences.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBImportAgencesActionPerformed(evt);
-            }
-        });
-
-        jBImportVille.setText("Importer les villes");
-        jBImportVille.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBImportVilleActionPerformed(evt);
-            }
-        });
-
-        jBStartTabou.setText("Lancer l'agorithme");
-        jBStartTabou.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBStartTabouActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jBImportAgences)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelNbAgences, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jBStartTabou, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jBImportVille, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelNbVilles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBImportAgences)
-                    .addComponent(jLabelNbAgences, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBImportVille)
-                    .addComponent(jLabelNbVilles))
-                .addGap(40, 40, 40)
-                .addComponent(jBStartTabou)
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-
-        jBStartTabou.setVisible(false);
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Résultats", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 51, 204)));
-
-        jListLF.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jListLFMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jListLF);
-
-        jLabelNbLF.setText("sd");
-
-        jLabel7.setText("Coût total ");
-
-        jLabel8.setText("Nb Lieux formation :");
-
-        jLabelCoutTotal.setText("jLabel9");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelNbLF, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelCoutTotal)
-                        .addGap(0, 109, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelNbLF)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabelCoutTotal)))
-        );
-
         jPanelInfosLF.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informations", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 51, 204)));
+        jPanelInfosLF.setPreferredSize(new java.awt.Dimension(400, 700));
 
         jLabel1.setText("Nom");
 
@@ -243,7 +149,7 @@ public class Vue extends javax.swing.JFrame {
                                 .addGroup(jPanelInfosLFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelNbPlaceRestance)
                                     .addComponent(jLabelNbPersonne))
-                                .addGap(0, 72, Short.MAX_VALUE)))))
+                                .addGap(0, 145, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanelInfosLFLayout.setVerticalGroup(
@@ -274,7 +180,180 @@ public class Vue extends javax.swing.JFrame {
                             .addComponent(jLabelNbPlaceRestance))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(387, Short.MAX_VALUE))
+        );
+
+        jPanel4.setPreferredSize(new java.awt.Dimension(400, 700));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Résultats", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 51, 204)));
+        jPanel3.setPreferredSize(new java.awt.Dimension(400, 459));
+        jPanel3.setRequestFocusEnabled(false);
+
+        jListLF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListLFMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jListLF);
+
+        jLabelNbLF.setText("sd");
+
+        jLabel7.setText("Coût total ");
+
+        jLabel8.setText("Nb Lieux formation :");
+
+        jLabelCoutTotal.setText("jLabel9");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 48, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelNbLF, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelCoutTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelNbLF)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabelCoutTotal)))
+        );
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Paramètres", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 255)));
+
+        jBImportAgences.setText("Importer les agences");
+        jBImportAgences.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBImportAgencesActionPerformed(evt);
+            }
+        });
+
+        jBImportVille.setText("Importer les villes");
+        jBImportVille.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBImportVilleActionPerformed(evt);
+            }
+        });
+
+        jBStartTabou.setText("Lancer l'agorithme");
+        jBStartTabou.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBStartTabouActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Nombre d'itération");
+
+        jTextFieldNbIte.setText("1000");
+        jTextFieldNbIte.setToolTipText("");
+        jTextFieldNbIte.setFocusTraversalPolicyProvider(true);
+        jTextFieldNbIte.setMinimumSize(new java.awt.Dimension(100, 100));
+        jTextFieldNbIte.setPreferredSize(new java.awt.Dimension(150, 30));
+        jTextFieldNbIte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNbIteActionPerformed(evt);
+            }
+        });
+        jTextFieldNbIte.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldNbIteKeyPressed(evt);
+            }
+        });
+
+        jButtonHelp.setText("Aide");
+        jButtonHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHelpActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jBImportAgences)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelNbAgences, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBStartTabou, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBImportVille, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelNbVilles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldNbIte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonHelp)
+                .addGap(46, 46, 46))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBImportAgences)
+                    .addComponent(jLabelNbAgences, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addComponent(jButtonHelp)
+                .addGap(1, 1, 1)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBImportVille)
+                    .addComponent(jLabelNbVilles, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jTextFieldNbIte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jBStartTabou)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jBStartTabou.setVisible(false);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -283,24 +362,20 @@ public class Vue extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanelInfosLF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelInfosLF, javax.swing.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelInfosLF, javax.swing.GroupLayout.PREFERRED_SIZE, 775, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanelInfosLF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -322,18 +397,27 @@ public class Vue extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBImportAgencesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBImportAgencesActionPerformed
-        JFileChooser dialogue = new JFileChooser();
+    private void jListLFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListLFMouseClicked
+        jPanelInfosLF.setVisible(true);
+        afficheInfosFromLF(controleur.getLieuxFormation().get(jListLF.getSelectedIndex()));
+    }//GEN-LAST:event_jListLFMouseClicked
 
-        dialogue.showOpenDialog(null);
-
-        controleur.importerAgence(dialogue.getSelectedFile());
-        jLabelNbAgences.setText(controleur.getListeAgences().size() + " agence(s) importée(s)");
-        
-        if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 00) {
-            jBStartTabou.setVisible(true);
+    private void jBStartTabouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBStartTabouActionPerformed
+        System.out.println("Taille Liste agence:" + controleur.getListeAgences().size());
+        System.out.println("Taille Liste Ville:" + controleur.getListeVilles().size());
+        if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 0) {
+            if (this.getNbIte() < 0) {
+                //Par défaut, on fait 1000 itérations
+                jTextFieldNbIte.setText(1000 + "");
+                setNbIte(1000); 
+            }
+                
+            controleur.startTabou(getNbIte());
+        } else {
+            JOptionPane jop3 = new JOptionPane();
+            jop3.showMessageDialog(null, "Vous devez importer les villes et les agences avant de lancer l'algo", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jBImportAgencesActionPerformed
+    }//GEN-LAST:event_jBStartTabouActionPerformed
 
     private void jBImportVilleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBImportVilleActionPerformed
         JFileChooser dialogue = new JFileChooser();
@@ -342,27 +426,43 @@ public class Vue extends javax.swing.JFrame {
 
         controleur.importerVille(dialogue.getSelectedFile());
         jLabelNbVilles.setText(controleur.getListeVilles().size() + " ville(s) importée(s)");
-        
+
         if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 00) {
             jBStartTabou.setVisible(true);
         }
     }//GEN-LAST:event_jBImportVilleActionPerformed
 
-    private void jBStartTabouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBStartTabouActionPerformed
-        System.out.println("Taille Liste agence:" + controleur.getListeAgences().size());
-        System.out.println("Taille Liste Ville:" + controleur.getListeVilles().size());
-        if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 0) {
-            controleur.startTabou();
-        } else {
-            JOptionPane jop3 = new JOptionPane();
-            jop3.showMessageDialog(null, "Vous devez importer les villes et les agences avant de lancer l'algo", "Erreur", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jBStartTabouActionPerformed
+    private void jBImportAgencesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBImportAgencesActionPerformed
+        JFileChooser dialogue = new JFileChooser();
 
-    private void jListLFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListLFMouseClicked
-        jPanelInfosLF.setVisible(true);
-        afficheInfosFromLF(controleur.getLieuxFormation().get(jListLF.getSelectedIndex()));
-    }//GEN-LAST:event_jListLFMouseClicked
+        dialogue.showOpenDialog(null);
+
+        controleur.importerAgence(dialogue.getSelectedFile());
+        jLabelNbAgences.setText(controleur.getListeAgences().size() + " agence(s) importée(s)");
+
+        if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 00) {
+            jBStartTabou.setVisible(true);
+        }
+    }//GEN-LAST:event_jBImportAgencesActionPerformed
+
+    private void jTextFieldNbIteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNbIteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNbIteActionPerformed
+
+    private void jTextFieldNbIteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNbIteKeyPressed
+        // TODO add your handling code here:
+        
+        if (KeyEvent.VK_ENTER == evt.getKeyCode()) {
+            setNbIte(Integer.parseInt(jTextFieldNbIte.getText()));
+        }
+    }//GEN-LAST:event_jTextFieldNbIteKeyPressed
+
+    private void jButtonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHelpActionPerformed
+        // TODO add your handling code here:
+        VueHelp vueHelp = new VueHelp();
+        vueHelp.setVisible(true);
+        
+    }//GEN-LAST:event_jButtonHelpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -440,7 +540,9 @@ public class Vue extends javax.swing.JFrame {
     private javax.swing.JButton jBImportAgences;
     private javax.swing.JButton jBImportVille;
     private javax.swing.JButton jBStartTabou;
+    private javax.swing.JButton jButtonHelp;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -448,6 +550,7 @@ public class Vue extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelCP;
     private javax.swing.JLabel jLabelCoutTotal;
     private javax.swing.JLabel jLabelCoutTotalForLF;
@@ -461,10 +564,26 @@ public class Vue extends javax.swing.JFrame {
     private javax.swing.JList jListAgenceParLF;
     private javax.swing.JList jListLF;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanelInfosLF;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextFieldNbIte;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the nbIte
+     */
+    public int getNbIte() {
+        return nbIte;
+    }
+
+    /**
+     * @param nbIte the nbIte to set
+     */
+    public void setNbIte(int nbIte) {
+        this.nbIte = nbIte;
+    }
 }
