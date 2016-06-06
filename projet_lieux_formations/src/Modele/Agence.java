@@ -166,6 +166,6 @@ public class Agence {
         double distance = 2 * Outils.getDistance(getLatitude(), getLongitude(), lF.getLatitude(), lF.getLongitude());
         price += 0.4 *getNbPersonne() * distance;
         
-        return price;
+        return Math.round(price);
     }
 }

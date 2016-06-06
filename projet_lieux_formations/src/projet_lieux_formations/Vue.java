@@ -46,6 +46,7 @@ public class Vue extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel9 = new javax.swing.JLabel();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanelInfosLF = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -70,6 +71,8 @@ public class Vue extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabelCoutTotal = new javax.swing.JLabel();
+        jRadioButtonLF = new javax.swing.JRadioButton();
+        jRadioButtonAgence = new javax.swing.JRadioButton();
         jPanel5 = new javax.swing.JPanel();
         jBImportAgences = new javax.swing.JButton();
         jBImportVille = new javax.swing.JButton();
@@ -79,8 +82,29 @@ public class Vue extends javax.swing.JFrame {
         jLabelNbAgences = new javax.swing.JLabel();
         jLabelNbVilles = new javax.swing.JLabel();
         jButtonHelp = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jListLAgence = new javax.swing.JList();
+        jLabelNbAgence = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabelCoutTotalAgence = new javax.swing.JLabel();
+        jRadioButtonLF1 = new javax.swing.JRadioButton();
+        jRadioButtonAgence1 = new javax.swing.JRadioButton();
+        jPanelInfosAgence = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabelAgence = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabelCPAgence = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabelNbPersonneAgence = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabelLFFromAgence = new javax.swing.JLabel();
 
         jLabel9.setText("jLabel9");
+
+        buttonGroup2.add(jRadioButtonAgence);
+        buttonGroup2.add(jRadioButtonLF);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1500, 1000));
@@ -149,7 +173,7 @@ public class Vue extends javax.swing.JFrame {
                                 .addGroup(jPanelInfosLFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelNbPlaceRestance)
                                     .addComponent(jLabelNbPersonne))
-                                .addGap(0, 145, Short.MAX_VALUE)))))
+                                .addGap(0, 433, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanelInfosLFLayout.setVerticalGroup(
@@ -204,6 +228,21 @@ public class Vue extends javax.swing.JFrame {
 
         jLabelCoutTotal.setText("jLabel9");
 
+        jRadioButtonLF.setSelected(true);
+        jRadioButtonLF.setText("Lieux formations");
+        jRadioButtonLF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonLFActionPerformed(evt);
+            }
+        });
+
+        jRadioButtonAgence.setText("Agences");
+        jRadioButtonAgence.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonAgenceActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -212,24 +251,33 @@ public class Vue extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 48, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
                         .addComponent(jLabelNbLF, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabelCoutTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabelCoutTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jRadioButtonLF)
+                                .addGap(34, 34, 34)
+                                .addComponent(jRadioButtonAgence)))
+                        .addGap(0, 48, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButtonLF)
+                    .addComponent(jRadioButtonAgence))
+                .addGap(13, 13, 13)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNbLF)
                     .addComponent(jLabel7)
@@ -335,6 +383,82 @@ public class Vue extends javax.swing.JFrame {
 
         jBStartTabou.setVisible(false);
 
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Résultats", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 51, 204)));
+        jPanel6.setPreferredSize(new java.awt.Dimension(400, 459));
+        jPanel6.setRequestFocusEnabled(false);
+
+        jListLAgence.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListLAgenceMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jListLAgence);
+
+        jLabelNbAgence.setText("sd");
+
+        jLabel11.setText("Coût total ");
+
+        jLabel12.setText("Nb Agence :");
+
+        jLabelCoutTotalAgence.setText("jLabel9");
+
+        jRadioButtonLF1.setText("Lieux formations");
+        jRadioButtonLF1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonLF1ActionPerformed(evt);
+            }
+        });
+
+        jRadioButtonAgence1.setSelected(true);
+        jRadioButtonAgence1.setText("Agences");
+        jRadioButtonAgence1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonAgence1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelNbAgence, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelCoutTotalAgence, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jRadioButtonLF1)
+                                .addGap(34, 34, 34)
+                                .addComponent(jRadioButtonAgence1)))
+                        .addGap(0, 48, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButtonLF1)
+                    .addComponent(jRadioButtonAgence1))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelNbAgence)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabelCoutTotalAgence)))
+        );
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -342,9 +466,11 @@ public class Vue extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -352,8 +478,80 @@ public class Vue extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
                 .addContainerGap())
+        );
+
+        jPanel3.setVisible(false);
+        jPanel6.setVisible(false);
+
+        jPanelInfosAgence.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informations", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 51, 204)));
+        jPanelInfosAgence.setPreferredSize(new java.awt.Dimension(400, 700));
+
+        jLabel13.setText("Nom");
+
+        jLabelAgence.setText("jLabelAgence");
+
+        jLabel14.setText("Code postal");
+
+        jLabelCPAgence.setText("jLabel4");
+
+        jLabel17.setText("Nombre de personne");
+
+        jLabelNbPersonneAgence.setText("jLabelAgence");
+
+        jLabel15.setText("Lieu de formation rattaché");
+
+        jLabelLFFromAgence.setText("LabelLFFromAgence");
+
+        javax.swing.GroupLayout jPanelInfosAgenceLayout = new javax.swing.GroupLayout(jPanelInfosAgence);
+        jPanelInfosAgence.setLayout(jPanelInfosAgenceLayout);
+        jPanelInfosAgenceLayout.setHorizontalGroup(
+            jPanelInfosAgenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelInfosAgenceLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelInfosAgenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelInfosAgenceLayout.createSequentialGroup()
+                        .addGroup(jPanelInfosAgenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelInfosAgenceLayout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addGap(44, 44, 44)
+                                .addComponent(jLabelAgence, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelInfosAgenceLayout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addGap(45, 45, 45)
+                                .addComponent(jLabelNbPersonneAgence)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelCPAgence, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE))
+                    .addGroup(jPanelInfosAgenceLayout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelLFFromAgence)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanelInfosAgenceLayout.setVerticalGroup(
+            jPanelInfosAgenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelInfosAgenceLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelInfosAgenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabelAgence)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabelCPAgence))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelInfosAgenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabelNbPersonneAgence))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelInfosAgenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabelLFFromAgence))
+                .addContainerGap(663, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -361,22 +559,33 @@ public class Vue extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanelInfosLF, javax.swing.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanelInfosLF, javax.swing.GroupLayout.DEFAULT_SIZE, 935, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(523, 523, 523)
+                        .addComponent(jPanelInfosAgence, javax.swing.GroupLayout.DEFAULT_SIZE, 935, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelInfosLF, javax.swing.GroupLayout.PREFERRED_SIZE, 775, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanelInfosLF, javax.swing.GroupLayout.PREFERRED_SIZE, 775, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelInfosAgence, javax.swing.GroupLayout.PREFERRED_SIZE, 775, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(155, Short.MAX_VALUE))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 835, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
+
+        jPanelInfosLF.setVisible(false);
+        jPanelInfosAgence.setVisible(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -390,8 +599,8 @@ public class Vue extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -405,6 +614,7 @@ public class Vue extends javax.swing.JFrame {
     private void jBStartTabouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBStartTabouActionPerformed
         System.out.println("Taille Liste agence:" + controleur.getListeAgences().size());
         System.out.println("Taille Liste Ville:" + controleur.getListeVilles().size());
+        this.reset();
         if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 0) {
             if (this.getNbIte() < 0) {
                 //Par défaut, on fait 1000 itérations
@@ -417,6 +627,9 @@ public class Vue extends javax.swing.JFrame {
             JOptionPane jop3 = new JOptionPane();
             jop3.showMessageDialog(null, "Vous devez importer les villes et les agences avant de lancer l'algo", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
+        
+        jPanel3.setVisible(true);
+        jPanelInfosLF.setVisible(false);
     }//GEN-LAST:event_jBStartTabouActionPerformed
 
     private void jBImportVilleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBImportVilleActionPerformed
@@ -464,6 +677,57 @@ public class Vue extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonHelpActionPerformed
 
+    private void jRadioButtonAgenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAgenceActionPerformed
+        // TODO add your handling code here:
+        
+        jPanel6.setVisible(true);
+        jPanel3.setVisible(false);
+        jRadioButtonAgence1.setSelected(true);
+        jRadioButtonLF1.setSelected(false);
+        
+        jPanelInfosAgence.setVisible(true);
+        jPanelInfosLF.setVisible(false);
+        this.afficheInfosAgence();
+    }//GEN-LAST:event_jRadioButtonAgenceActionPerformed
+
+    private void jListLAgenceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListLAgenceMouseClicked
+        // TODO add your handling code here:
+        afficheInfosFromAgence(controleur.getListeAgences().get(jListLAgence.getSelectedIndex()));
+    }//GEN-LAST:event_jListLAgenceMouseClicked
+
+    private void jRadioButtonAgence1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAgence1ActionPerformed
+        // TODO add your handling code here:
+        jRadioButtonAgence1.setSelected(true);
+        jRadioButtonLF1.setSelected(false);
+        jPanel6.setVisible(true);
+        jPanel3.setVisible(false);
+        
+        jPanelInfosAgence.setVisible(true);
+        jPanelInfosLF.setVisible(false);
+    }//GEN-LAST:event_jRadioButtonAgence1ActionPerformed
+
+    private void jRadioButtonLF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonLF1ActionPerformed
+        // TODO add your handling code here:
+        jPanel6.setVisible(false);
+        jPanel3.setVisible(true);
+        jRadioButtonLF.setSelected(true);
+        jRadioButtonAgence.setSelected(false);
+        
+        jPanelInfosAgence.setVisible(false);
+        jPanelInfosLF.setVisible(true);
+    }//GEN-LAST:event_jRadioButtonLF1ActionPerformed
+
+    private void jRadioButtonLFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonLFActionPerformed
+        // TODO add your handling code here:
+        jPanel6.setVisible(false);
+        jPanel3.setVisible(true);
+        jRadioButtonLF.setSelected(true);
+        jRadioButtonAgence.setSelected(false);
+        
+        jPanelInfosAgence.setVisible(false);
+        jPanelInfosLF.setVisible(true);
+    }//GEN-LAST:event_jRadioButtonLFActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -502,12 +766,10 @@ public class Vue extends javax.swing.JFrame {
          DefaultListModel list = new DefaultListModel();
          Solution solution = controleur.getSolution();
          List<Ville> listeLF = controleur.getLieuxFormation();
-         int nbAgenceTotal = 0;
-         double cost = 0;
+
         for(int i = 0; i<listeLF.size(); i++) {
             int nbAgence = listeLF.get(i).getListeAgences().size();
-            nbAgenceTotal += nbAgence;
-            cost += listeLF.get(i).getPriceForLF();
+
             list.addElement(listeLF.get(i).getNom() + " - " + listeLF.get(i).getCodePostal() + " ( " + nbAgence + " )");   
         }
         
@@ -526,23 +788,80 @@ public class Vue extends javax.swing.JFrame {
         jLabelNbPlaceRestance.setText(lF.calculPlaceRestante() + "");
         jLabelCoutTotalForLF.setText(lF.getPriceForLF() + "");
        
-        Solution solution = controleur.getSolution();
-        List<Ville> listeLF = controleur.getLieuxFormation();
-        int nbAgenceTotal = 0;
         for (int i = 0; i < lF.getListeAgences().size(); i++) {
             Agence agence = lF.getListeAgences().get(i);
             list.addElement(agence.getNom() + " - " + agence.getCodePostal() + " ( " + agence.getNbPersonne() + " personnes soit " + agence.getPriceForTransportForAgenceToLF(lF)+ " € de transport )");
         }
         jListAgenceParLF.setModel(list);
     }
+    
+    public void afficheInfosAgence() 
+    {
+        DefaultListModel list = new DefaultListModel();
+        Solution solution = controleur.getSolution();
+        
+        List<Agence> listeAgence = controleur.getListeAgences();
+        
+        for (int i = 0; i < listeAgence.size(); i++) {
+            list.addElement(listeAgence.get(i).getNom() + " - " + listeAgence.get(i).getCodePostal() + "");
+        }
+
+        jListLAgence.setModel(list);
+        jLabelNbAgence.setText(listeAgence.size() + "");
+        jLabelCoutTotalAgence.setText(solution.getPrice() + "");
+    }
+    
+    public void afficheInfosFromAgence(Agence a)
+    {
+        List<Ville> listeVille = controleur.getListeVilles();
+        
+        jLabelCPAgence.setText(a.getCodePostal());
+        jLabelAgence.setText(a.getNom());
+        jLabelNbPersonneAgence.setText(a.getNbPersonne() + "");
+        jLabelLFFromAgence.setText(listeVille.get(a.getIndexOfLieuFormation()).getNom());
+    }
+    
+    public void reset()
+    {
+        
+        jLabelVille.setText(null);
+        jLabelCP.setText(null);
+        jLabelNbLF.setText(null);
+        jLabelCoutTotal.setText(null);
+        jLabelNbAgenceForVille.setText(null);
+        jLabelCoutTotalForLF.setText(null);
+        jLabelNbPersonne.setText(null);
+        jLabelNbPlaceRestance.setText(null);
+        jLabelNbAgence.setText(null);
+        jLabelCoutTotalAgence.setText(null);
+        jLabelAgence.setText(null);
+        jLabelNbPersonneAgence.setText(null);
+        jLabelLFFromAgence.setText(null);
+        jLabelCPAgence.setText(null);
+        
+        jPanel6.setVisible(false);
+        jPanel3.setVisible(true);
+        jRadioButtonLF.setSelected(true);
+        jRadioButtonAgence.setSelected(false);
+        
+        jPanelInfosAgence.setVisible(false);
+        jPanelInfosLF.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jBImportAgences;
     private javax.swing.JButton jBImportVille;
     private javax.swing.JButton jBStartTabou;
     private javax.swing.JButton jButtonHelp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -551,25 +870,39 @@ public class Vue extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelAgence;
     private javax.swing.JLabel jLabelCP;
+    private javax.swing.JLabel jLabelCPAgence;
     private javax.swing.JLabel jLabelCoutTotal;
+    private javax.swing.JLabel jLabelCoutTotalAgence;
     private javax.swing.JLabel jLabelCoutTotalForLF;
+    private javax.swing.JLabel jLabelLFFromAgence;
+    private javax.swing.JLabel jLabelNbAgence;
     private javax.swing.JLabel jLabelNbAgenceForVille;
     private javax.swing.JLabel jLabelNbAgences;
     private javax.swing.JLabel jLabelNbLF;
     private javax.swing.JLabel jLabelNbPersonne;
+    private javax.swing.JLabel jLabelNbPersonneAgence;
     private javax.swing.JLabel jLabelNbPlaceRestance;
     private javax.swing.JLabel jLabelNbVilles;
     private javax.swing.JLabel jLabelVille;
     private javax.swing.JList jListAgenceParLF;
+    private javax.swing.JList jListLAgence;
     private javax.swing.JList jListLF;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanelInfosAgence;
     private javax.swing.JPanel jPanelInfosLF;
+    private javax.swing.JRadioButton jRadioButtonAgence;
+    private javax.swing.JRadioButton jRadioButtonAgence1;
+    private javax.swing.JRadioButton jRadioButtonLF;
+    private javax.swing.JRadioButton jRadioButtonLF1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextFieldNbIte;
     // End of variables declaration//GEN-END:variables
 
