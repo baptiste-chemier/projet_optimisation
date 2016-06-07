@@ -11,6 +11,7 @@ import Modele.Solution;
 import Modele.Ville;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -33,6 +34,7 @@ public class Vue extends javax.swing.JFrame {
         nbIte = 1000;
         initComponents();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jLabelInfos.setText(null);
        
     }
 
@@ -63,6 +65,8 @@ public class Vue extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabelNbPersonne = new javax.swing.JLabel();
         jLabelNbPlaceRestance = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabelTpsCalcul = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -82,6 +86,7 @@ public class Vue extends javax.swing.JFrame {
         jLabelNbAgences = new javax.swing.JLabel();
         jLabelNbVilles = new javax.swing.JLabel();
         jButtonHelp = new javax.swing.JButton();
+        jLabelInfos = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jListLAgence = new javax.swing.JList();
@@ -100,6 +105,8 @@ public class Vue extends javax.swing.JFrame {
         jLabelNbPersonneAgence = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabelLFFromAgence = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        JLabeltpsEXEAgence = new javax.swing.JLabel();
 
         jLabel9.setText("jLabel9");
 
@@ -141,6 +148,10 @@ public class Vue extends javax.swing.JFrame {
 
         jLabelNbPlaceRestance.setText("jLabel7");
 
+        jLabel16.setText("Temps de calcul de l'algorithme");
+
+        jLabelTpsCalcul.setText("jLabel18");
+
         javax.swing.GroupLayout jPanelInfosLFLayout = new javax.swing.GroupLayout(jPanelInfosLF);
         jPanelInfosLF.setLayout(jPanelInfosLFLayout);
         jPanelInfosLFLayout.setHorizontalGroup(
@@ -173,7 +184,12 @@ public class Vue extends javax.swing.JFrame {
                                 .addGroup(jPanelInfosLFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelNbPlaceRestance)
                                     .addComponent(jLabelNbPersonne))
-                                .addGap(0, 433, Short.MAX_VALUE)))))
+                                .addGap(0, 433, Short.MAX_VALUE))))
+                    .addGroup(jPanelInfosLFLayout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabelTpsCalcul)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelInfosLFLayout.setVerticalGroup(
@@ -204,7 +220,11 @@ public class Vue extends javax.swing.JFrame {
                             .addComponent(jLabelNbPlaceRestance))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(387, Short.MAX_VALUE))
+                .addGap(168, 168, 168)
+                .addGroup(jPanelInfosLFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabelTpsCalcul))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
 
         jPanel4.setPreferredSize(new java.awt.Dimension(400, 700));
@@ -333,6 +353,9 @@ public class Vue extends javax.swing.JFrame {
             }
         });
 
+        jLabelInfos.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelInfos.setText("jLabel16");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -344,7 +367,10 @@ public class Vue extends javax.swing.JFrame {
                         .addComponent(jBImportAgences)
                         .addGap(18, 18, 18)
                         .addComponent(jLabelNbAgences, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jBStartTabou, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jBStartTabou, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelInfos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jBImportVille, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -352,7 +378,7 @@ public class Vue extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelNbVilles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldNbIte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jTextFieldNbIte, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -377,7 +403,9 @@ public class Vue extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(jTextFieldNbIte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jBStartTabou)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBStartTabou)
+                    .addComponent(jLabelInfos))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -447,7 +475,7 @@ public class Vue extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButtonLF1)
                     .addComponent(jRadioButtonAgence1))
@@ -456,7 +484,8 @@ public class Vue extends javax.swing.JFrame {
                     .addComponent(jLabelNbAgence)
                     .addComponent(jLabel11)
                     .addComponent(jLabel12)
-                    .addComponent(jLabelCoutTotalAgence)))
+                    .addComponent(jLabelCoutTotalAgence))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -464,13 +493,15 @@ public class Vue extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -479,9 +510,9 @@ public class Vue extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(23, 23, 23))
         );
 
         jPanel3.setVisible(false);
@@ -506,6 +537,10 @@ public class Vue extends javax.swing.JFrame {
 
         jLabelLFFromAgence.setText("LabelLFFromAgence");
 
+        jLabel18.setText("Temps de calcul de l'algorithme");
+
+        JLabeltpsEXEAgence.setText("jLabel19");
+
         javax.swing.GroupLayout jPanelInfosAgenceLayout = new javax.swing.GroupLayout(jPanelInfosAgence);
         jPanelInfosAgence.setLayout(jPanelInfosAgenceLayout);
         jPanelInfosAgenceLayout.setHorizontalGroup(
@@ -526,11 +561,17 @@ public class Vue extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelCPAgence, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE))
+                        .addComponent(jLabelCPAgence, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE))
                     .addGroup(jPanelInfosAgenceLayout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelLFFromAgence)
+                        .addGroup(jPanelInfosAgenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelInfosAgenceLayout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelLFFromAgence))
+                            .addGroup(jPanelInfosAgenceLayout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addGap(18, 18, 18)
+                                .addComponent(JLabeltpsEXEAgence)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -551,7 +592,11 @@ public class Vue extends javax.swing.JFrame {
                 .addGroup(jPanelInfosAgenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(jLabelLFFromAgence))
-                .addContainerGap(663, Short.MAX_VALUE))
+                .addGap(112, 112, 112)
+                .addGroup(jPanelInfosAgenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(JLabeltpsEXEAgence))
+                .addContainerGap(537, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -566,8 +611,8 @@ public class Vue extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanelInfosLF, javax.swing.GroupLayout.DEFAULT_SIZE, 935, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(523, 523, 523)
-                        .addComponent(jPanelInfosAgence, javax.swing.GroupLayout.DEFAULT_SIZE, 935, Short.MAX_VALUE)))
+                        .addGap(520, 520, 520)
+                        .addComponent(jPanelInfosAgence, javax.swing.GroupLayout.DEFAULT_SIZE, 938, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -624,8 +669,7 @@ public class Vue extends javax.swing.JFrame {
                 
             controleur.startTabou(getNbIte());
         } else {
-            JOptionPane jop3 = new JOptionPane();
-            jop3.showMessageDialog(null, "Vous devez importer les villes et les agences avant de lancer l'algo", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Vous devez importer les villes et les agences avant de lancer l'algo", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
         
         jPanel3.setVisible(true);
@@ -666,7 +710,15 @@ public class Vue extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         if (KeyEvent.VK_ENTER == evt.getKeyCode()) {
-            setNbIte(Integer.parseInt(jTextFieldNbIte.getText()));
+            try {
+                setNbIte(Integer.parseInt(jTextFieldNbIte.getText()));
+                JOptionPane.showMessageDialog(null, "L'algorithme fera " + jTextFieldNbIte.getText() + " itération(s)", "Information", JOptionPane.INFORMATION_MESSAGE);
+                jLabelInfos.setText(null);
+            } catch (Exception e) {
+                jLabelInfos.setText("Vous devez saisir un nombre");
+            }
+        }else {
+            jLabelInfos.setText("Vous devez appuyer sur la touche 'Entrée' pour valider");
         }
     }//GEN-LAST:event_jTextFieldNbIteKeyPressed
 
@@ -776,7 +828,13 @@ public class Vue extends javax.swing.JFrame {
         jListLF.setModel(list);
         jLabelNbLF.setText(listeLF.size() + "");
         jLabelCoutTotal.setText(solution.getPrice() + "");
-    }
+        String time = String.format("%d min, %d sec",
+                TimeUnit.MILLISECONDS.toMinutes(controleur.getTempsExe()),
+                TimeUnit.MILLISECONDS.toSeconds(controleur.getTempsExe())
+                - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(controleur.getTempsExe())));
+
+        jLabelTpsCalcul.setText(time + " | " + controleur.getTempsExe() + " ms");
+   }
     
     public void afficheInfosFromLF(Ville lF) {
         DefaultListModel list = new DefaultListModel();
@@ -809,6 +867,12 @@ public class Vue extends javax.swing.JFrame {
         jListLAgence.setModel(list);
         jLabelNbAgence.setText(listeAgence.size() + "");
         jLabelCoutTotalAgence.setText(solution.getPrice() + "");
+        String time = String.format("%d min, %d sec",
+                TimeUnit.MILLISECONDS.toMinutes(controleur.getTempsExe()),
+                TimeUnit.MILLISECONDS.toSeconds(controleur.getTempsExe())
+                - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(controleur.getTempsExe())));
+        
+        JLabeltpsEXEAgence.setText(time);
     }
     
     public void afficheInfosFromAgence(Agence a)
@@ -838,6 +902,9 @@ public class Vue extends javax.swing.JFrame {
         jLabelNbPersonneAgence.setText(null);
         jLabelLFFromAgence.setText(null);
         jLabelCPAgence.setText(null);
+        jLabelInfos.setText(null);
+        JLabeltpsEXEAgence.setText(null);
+        jLabelTpsCalcul.setText(null);
         
         jPanel6.setVisible(false);
         jPanel3.setVisible(true);
@@ -849,6 +916,7 @@ public class Vue extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel JLabeltpsEXEAgence;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jBImportAgences;
     private javax.swing.JButton jBImportVille;
@@ -861,7 +929,9 @@ public class Vue extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -876,6 +946,7 @@ public class Vue extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCoutTotal;
     private javax.swing.JLabel jLabelCoutTotalAgence;
     private javax.swing.JLabel jLabelCoutTotalForLF;
+    private javax.swing.JLabel jLabelInfos;
     private javax.swing.JLabel jLabelLFFromAgence;
     private javax.swing.JLabel jLabelNbAgence;
     private javax.swing.JLabel jLabelNbAgenceForVille;
@@ -885,6 +956,7 @@ public class Vue extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelNbPersonneAgence;
     private javax.swing.JLabel jLabelNbPlaceRestance;
     private javax.swing.JLabel jLabelNbVilles;
+    private javax.swing.JLabel jLabelTpsCalcul;
     private javax.swing.JLabel jLabelVille;
     private javax.swing.JList jListAgenceParLF;
     private javax.swing.JList jListLAgence;

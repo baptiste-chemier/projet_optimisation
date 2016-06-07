@@ -37,7 +37,7 @@ public class VueHelp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextPane2.setText("\nAfin de lancer l'algorithme, vous devez avoir préalablement importé des agences puis des lieux de formation.\n\nUne fois cela fait, vous pouvez lancer l'algorithme.\n\nLorsque celui-ci est terminé, par défaut, la liste des lieux de formation s'affiche puis, lorsque vous cliquez sur l'un d'eux, des informations sur celui-ci s'affichent.\n\nCependant, vous pouvez également visualiser la liste des Agences afin d'avoir des informations sur celles-ci et notamment le lieu de formation de l'agence. ");
+        jTextPane2.setText("\nAfin de lancer l'algorithme, vous devez avoir préalablement importé des agences puis des lieux de formation.\n\nUne fois cela fait, vous pouvez lancer l'algorithme. Vous pouvez également modifier le nombre d'itérations à faire. Saisissez votre valeur pouis appuyez sur 'Entrée'. \n\nLorsque celui-ci est terminé, par défaut, la liste des lieux de formation s'affiche puis, lorsque vous cliquez sur l'un d'eux, des informations sur celui-ci s'affichent.\n\nCependant, vous pouvez également visualiser la liste des Agences afin d'avoir des informations sur celles-ci et notamment le lieu de formation de l'agence. ");
         jTextPane2.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextPane2.setEnabled(false);
         jScrollPane1.setViewportView(jTextPane2);
@@ -55,7 +55,7 @@ public class VueHelp extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(355, 355, 355)
@@ -66,7 +66,7 @@ public class VueHelp extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonOk)
                 .addContainerGap())
