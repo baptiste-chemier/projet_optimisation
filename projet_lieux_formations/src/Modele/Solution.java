@@ -6,7 +6,6 @@
 package Modele;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -19,18 +18,8 @@ public class Solution {
     private List<Ville> listeVilles;
     private double totalPrice;
     private List<Agence> listeAgences;
-    private LinkedList<Agence> listeTabou;
-    public int sizeTabou = 1;
 
-    
-    private int nbMoins;
-    private int nbPlus;
 
-    public Solution() {
-        // On sauvegarde dans cette liste les agences ayant un indexOfLastLieuFormation non nul ce qui signifie
-        // que l'on ne peut pas retournerà l'ancienne solution
-        listeTabou = new LinkedList<>();
-    }
     /**
      * @return the listeLieuxFormation
      */
@@ -73,21 +62,6 @@ public class Solution {
         this.listeAgences = listeAgences;
     }
 
-    /**
-     * @return the listeTabou
-     */
-    public List<Agence> getListeTabou() {
-        return listeTabou;
-    }
-
-
-    public void addToListeTabou(Agence agence) {
-        //Si la taille du tableau est >= à la taille de la liste tabou, on supprime le premier élément et on ajoute l'agence à la fin.
-        if (listeTabou.size() >= sizeTabou) {
-            listeTabou.removeFirst();
-        }
-        listeTabou.addLast(agence);
-    }
 
     /**
      * @return the listeVilles
@@ -101,34 +75,6 @@ public class Solution {
      */
     public void setListeVilles(List<Ville> listeVilles) {
         this.listeVilles = listeVilles;
-    }
-
-    /**
-     * @return the nbMoins
-     */
-    public int getNbMoins() {
-        return nbMoins;
-    }
-
-    /**
-     * @param nbMoins the nbMoins to set
-     */
-    public void setNbMoins(int nbMoins) {
-        this.nbMoins = nbMoins;
-    }
-
-    /**
-     * @return the nbPlus
-     */
-    public int getNbPlus() {
-        return nbPlus;
-    }
-
-    /**
-     * @param nbPlus the nbPlus to set
-     */
-    public void setNbPlus(int nbPlus) {
-        this.nbPlus = nbPlus;
     }
     
     public List<Ville> controlOpen() {

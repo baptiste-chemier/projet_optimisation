@@ -21,7 +21,7 @@ public class Ville {
     private String latitude;
     
     private int nbPlacesRestantes;   
-    private List<Agence> listeAgences;
+    private final List<Agence> listeAgences;
     private boolean isOpen;
 
     public Ville(String id, String nom, String codePostal, String longitude, String latitude) {
@@ -33,7 +33,7 @@ public class Ville {
         
         this.nbPlacesRestantes = 60;
         this.isOpen = false;
-        this.listeAgences = new ArrayList<Agence>();
+        this.listeAgences = new ArrayList<>();
                 
     }
     /**
@@ -135,7 +135,7 @@ public class Ville {
     }
 
     /**
-     * @param isChosen the isOpen to set
+     * @param isOpen
      */
     public void setIsOpen(boolean isOpen) {
         this.isOpen = isOpen;
@@ -144,8 +144,8 @@ public class Ville {
     public int getNbPersonnePresente() 
     {
         int nbPersonne = 0;
-        for (int i = 0; i< listeAgences.size(); i++ ) {
-            nbPersonne += listeAgences.get(i).getNbPersonne();
+        for (Agence listeAgence : listeAgences) {
+            nbPersonne += listeAgence.getNbPersonne();
         }
        return nbPersonne;
     }
@@ -170,15 +170,11 @@ public class Ville {
             price += 3000;
         }
         
-        for (int i = 0; i< listeAgences.size(); i++ ) {
-            double distance = 2* Outils.getDistance(listeAgences.get(i).getLatitude(), listeAgences.get(i).getLongitude(), getLatitude(), getLongitude());
-            price += 0.4 * listeAgences.get(i).getNbPersonne() * distance;
+        for (Agence listeAgence : listeAgences) {
+            double distance = 2 * Outils.getDistance(listeAgence.getLatitude(), listeAgence.getLongitude(), getLatitude(), getLongitude());
+            price += 0.4 * listeAgence.getNbPersonne() * distance;
         }
         
         return Math.round(price);
-    }
-    
-    
-    
-
+    }   
 }

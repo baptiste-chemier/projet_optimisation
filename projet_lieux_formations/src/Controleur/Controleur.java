@@ -50,6 +50,10 @@ public class Controleur {
 
     }
 
+    /**
+     * Importation des Villes depuis un fichier
+     * @param file 
+     */
     public void importerVille(File file) {
         try {
             InputStream flux = new FileInputStream(file.getAbsolutePath());
@@ -87,6 +91,10 @@ public class Controleur {
         }
     }
 
+    /**
+     * Importation des Agences depuis un fichier
+     * @param file 
+     */
     public void importerAgence(File file) {
         try {
             InputStream flux = new FileInputStream(file.getAbsolutePath());
@@ -124,6 +132,9 @@ public class Controleur {
         }
     }
 
+    /**
+     * Initialisation des liste d'agences et de villes afin d'avoir de nouvelles listes vierges
+     */
     public void initialisation() {
         listeAgences = cloneListeAgence(listeAgenceWithoutLF);
         listeVilles = cloneListVille(listeVilleCloseWithoutAgence);
@@ -143,10 +154,13 @@ public class Controleur {
         return listeAgences;
     }
 
+    /**
+     * Génération de la solution initale
+     */
     public void genererSolutionInitiale() {
         for (int i = 0; i < listeAgences.size(); i++) {
             Random rand = new Random();
-            int indice = rand.nextInt(listeVilles.size() - 1);
+            int indice = rand.nextInt(listeVilles.size() - 1); //Indice du lieu de formation au hasard
 
             int nbPlaceRestante = listeVilles.get(indice).getNbPlacesRestantes();
             if (nbPlaceRestante >= listeAgences.get(i).getNbPersonne()) {
@@ -159,14 +173,18 @@ public class Controleur {
                 int nbPlaceRestanteNew = nbPlaceRestante - listeAgences.get(i).getNbPersonne();
                 listeVilles.get(indice).setNbPlacesRestantes(nbPlaceRestanteNew); //gestion du nombre de places restantes
             }
+            //Calcul de la distance
             double distance = Outils.getDistance(listeAgences.get(i).getLatitude(), listeAgences.get(i).getLongitude(), listeVilles.get(listeAgences.get(i).getIndexOfLieuFormation()).getLatitude(), listeVilles.get(listeAgences.get(i).getIndexOfLieuFormation()).getLongitude());
 
             System.out.println("Agence: " + listeAgences.get(i).getNom() + " | Lieu de formation associé: " + listeVilles.get(listeAgences.get(i).getIndexOfLieuFormation()).getNom() + " | Distance: " + distance);
         }
+        
+        //Calcul du prix.
         double priceTranport = getPriceTransport();
         double priceOpen = getPriceLieuxOpen();
         double totalPrice = priceOpen + priceTranport;
 
+        //Set de la solution
         this.getSolution().setTotalPrice(totalPrice);
         this.getSolution().setListeAgences(listeAgences);
         this.getSolution().setListeLieuxFormation(getLieuxFormation());
@@ -174,6 +192,10 @@ public class Controleur {
 
     }
 
+    /**
+     * Récupère le prix total dû aux transport (0.4 cts/km)
+     * @return double Prix
+     */
     public double getPriceTransport() {
         double price = 0;
         for (Agence listeAgence : listeAgences) {
@@ -184,16 +206,10 @@ public class Controleur {
         return price;
     }
 
-    public double getPriceTransportFromSolution(List<Agence> liste) {
-        double price = 0;
-        for (Agence listeAgence : liste) {
-            Ville lieuFormation = listeVilles.get(listeAgence.getIndexOfLieuFormation());
-            double distance = 2 * Outils.getDistance(listeAgence.getLatitude(), listeAgence.getLongitude(), lieuFormation.getLatitude(), lieuFormation.getLongitude()); //On gère l'aller retour
-            price += 0.4 * listeAgence.getNbPersonne() * distance;
-        }
-        return price;
-    }
-
+    /**
+     * Récupère le prix total dû à l'ouverture des lieux de formations
+     * @return double Prix
+     */
     public double getPriceLieuxOpen() {
         double price = 0;
         for (Ville listeVille : listeVilles) {
@@ -204,23 +220,10 @@ public class Controleur {
         return price;
     }
 
-    public double getTotalPrice(List<Agence> liste) {
-        double price = 0;
-        for (Agence listeAgence : liste) {
-            Ville lieuFormation = listeVilles.get(listeAgence.getIndexOfLieuFormation());
-            double distance = 2 * Outils.getDistance(listeAgence.getLatitude(), listeAgence.getLongitude(), lieuFormation.getLatitude(), lieuFormation.getLongitude()); //On gère l'aller retour
-            price += 0.4 * listeAgence.getNbPersonne() * distance;
-        }
-
-        for (Ville listeVille : listeVilles) {
-            if (listeVille.getIsOpen()) {
-                price += 3000;
-            }
-        }
-
-        return price;
-    }
-
+    /**
+     * Génère le voisinage d'une solution
+     * @return Solution meilleure voisin
+     */
     public Solution genererVoisinage() {
 
         double bestVoisin = 1000000000;
@@ -243,9 +246,11 @@ public class Controleur {
             double price = this.getSolution().getTotalPrice();
 
             rand = new Random();
-
+            
+            //Nombre au hasard entre 0 et 10
             choice = rand.nextInt(10);
-            if (choice > 8) {
+            //80% de chance que l'on prenne un lieux de formation déjà ouvert.
+            if (choice < 8) {
                 indice = rand.nextInt(lFTmp.size() - 1); //indice du nouveau lieu de formation
             } else {
                 int random = rand.nextInt(agenceTmp.size() - 1); //indice du nouveau lieu de formation
@@ -263,10 +268,10 @@ public class Controleur {
                     }
 
                     double distance = 2 * Outils.getDistance(agenceTmp.get(i).getLatitude(), agenceTmp.get(i).getLongitude(), lFTmp.get(indice).getLatitude(), lFTmp.get(indice).getLongitude());
-                    price += 0.4 * agenceTmp.get(i).getNbPersonne() * distance;
+                    price += 0.4 * agenceTmp.get(i).getNbPersonne() * distance; //Ajout de la distance
 
                     double distanceOld = 2 * Outils.getDistance(agenceTmp.get(i).getLatitude(), agenceTmp.get(i).getLongitude(), lFTmp.get(lastIndexLf).getLatitude(), lFTmp.get(lastIndexLf).getLongitude());
-                    price -= 0.4 * agenceTmp.get(i).getNbPersonne() * distanceOld;
+                    price -= 0.4 * agenceTmp.get(i).getNbPersonne() * distanceOld; //Soustraction de l'ancienne distance
 
                     if ((lFTmp.get(indice).getNbPlacesRestantes() + agenceTmp.get(i).getNbPersonne()) == 60) {
                         price -= 3000;
@@ -277,8 +282,8 @@ public class Controleur {
                 } else {
                     rand = new Random();
 
-                    choice = rand.nextInt(2);
-                    if (choice == 0) {
+                    choice = rand.nextInt(10);
+                    if (choice < 8) {
                         indice = rand.nextInt(lFTmp.size() - 1); //indice du nouveau lieu de formation
                     } else {
                         int random = rand.nextInt(agenceTmp.size() - 1); //indice du nouveau lieu de formation
@@ -298,6 +303,7 @@ public class Controleur {
         }
 
         if (change == true) {
+            //Si le prix à changé, on mets à jour la solution
             int lastIndexLf = agenceTmp.get(indiceAgence).getIndexOfLieuFormation(); //Récupération de l'ancien index du Lf
             agenceTmp.get(indiceAgence).setIdLieuFormation(lFTmp.get(indiceVille).getId()); //Set de l'ID
             agenceTmp.get(indiceAgence).setIndexOfLieuFormation(indiceVille); //Set de l'Index
@@ -320,6 +326,10 @@ public class Controleur {
         return meilleurVoisin;
     }
 
+    /**
+     * Lancement de la méthode Tabou.
+     * @param nbIte 
+     */
     public void startTabou(int nbIte) {
 
         initialisation();
@@ -339,6 +349,9 @@ public class Controleur {
                 majListeFormation(s.getListeAgences(), villeCLose);
                 solution = cloneSolution(s);
             }
+            if (i%5000 == 0){
+                System.err.println("Nombre d'itération : " + i);
+            }
         }
 
         long end = System.currentTimeMillis();
@@ -352,6 +365,10 @@ public class Controleur {
         vue.afficheInfos();
     }
 
+    /**
+     * Getteur du les Lieux de formation
+     * @return 
+     */
     public List<Ville> getLieuxFormation() {
         List<Ville> lieuFormation = new ArrayList();
         for (Ville listeVille : listeVilles) {
@@ -362,16 +379,11 @@ public class Controleur {
         return lieuFormation;
     }
 
-    public List<Ville> getLieuxFormation(List<Ville> listeLieuFormation) {
-        List<Ville> lieuFormation = new ArrayList();
-        for (Ville listeVille : listeLieuFormation) {
-            if (listeVille.getIsOpen()) {
-                lieuFormation.add(listeVille);
-            }
-        }
-        return lieuFormation;
-    }
-
+    /**
+     * Mise à jour de la liste des lieux de formation
+     * @param listeAgenceAttachees
+     * @param allVilleClose 
+     */
     public void majListeFormation(List<Agence> listeAgenceAttachees, List<Ville> allVilleClose) {
 
         for (Agence agence : listeAgenceAttachees) {
@@ -384,6 +396,10 @@ public class Controleur {
         this.setListeVilles(allVilleClose);
     }
 
+    /**
+     * Vérification qu'une agence soit bien liée à un lieux de formation
+     * @return 
+     */
     public boolean control() {
         for (Agence listeAgence : listeAgences) {
             if (listeAgence.getIndexOfLieuFormation() < 0) {
@@ -393,6 +409,11 @@ public class Controleur {
         return true;
     }
 
+    /**
+     * Getteur du nombre de participant pour un lieux de formation
+     * @param v
+     * @return 
+     */
     public int getNbParticipantFromLF(Ville v) {
         int nbPersonne = 0;
         for (int i = 0; i < v.getListeAgences().size(); i++) {
@@ -416,6 +437,11 @@ public class Controleur {
         this.listeVilles = listeVilles;
     }
 
+    /**
+     * Getteur des lieux de formations depuis une liste d'agence.
+     * @param listeAgence
+     * @return 
+     */
     public List<Ville> getLieuFormationFromAgence(List<Agence> listeAgence) {
         List<Ville> lieuFormation = new ArrayList();
         for (Agence listeAgence1 : listeAgence) {
@@ -434,16 +460,12 @@ public class Controleur {
         return listeVilleCloseWithoutAgence;
     }
 
-    public List<Ville> closeAllVille(List<Ville> listeVilleToClose) {
-        for (Ville listeVilleToClose1 : listeVilleToClose) {
-            listeVilleToClose1.setIsOpen(false); //Set close
-            for (int j = 0; j < listeVilleToClose1.getListeAgences().size(); j++) {
-                listeVilleToClose1.getListeAgences().remove(j); //On supprime toutes les agences liées à cette ville
-            }
-        }
-        return listeVilleToClose;
-    }
-
+    /**
+     * Clonage d'une liste de ville
+     * Permet d'avoir une nouvelle liste de ville avec une nouvelle instance de ville.
+     * @param lV
+     * @return 
+     */
     public List<Ville> cloneListVille(List<Ville> lV) {
         List<Ville> listeReturn = new ArrayList<>();
 
@@ -456,6 +478,11 @@ public class Controleur {
         return listeReturn;
     }
 
+    /**
+     * Clonage d'une liste d'agence
+     * @param lA
+     * @return 
+     */
     public List<Agence> cloneListeAgence(List<Agence> lA) {
         List<Agence> listeReturn = new ArrayList<>();
 
@@ -467,6 +494,11 @@ public class Controleur {
         return listeReturn;
     }
 
+    /**
+     * Clonage d'une solution
+     * @param s
+     * @return 
+     */
     public Solution cloneSolution(Solution s) {
         Solution solutionRetour = new Solution();
         solutionRetour.setListeAgences(s.getListeAgences());

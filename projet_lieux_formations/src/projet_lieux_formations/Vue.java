@@ -680,12 +680,15 @@ public class Vue extends javax.swing.JFrame {
         JFileChooser dialogue = new JFileChooser();
 
         dialogue.showOpenDialog(null);
+        
+        try {
+            controleur.importerVille(dialogue.getSelectedFile());
+            jLabelNbVilles.setText(controleur.getListeVilles().size() + " ville(s) importée(s)");
 
-        controleur.importerVille(dialogue.getSelectedFile());
-        jLabelNbVilles.setText(controleur.getListeVilles().size() + " ville(s) importée(s)");
-
-        if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 00) {
-            jBStartTabou.setVisible(true);
+            if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 00) {
+                jBStartTabou.setVisible(true);
+            }
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_jBImportVilleActionPerformed
 
@@ -694,11 +697,14 @@ public class Vue extends javax.swing.JFrame {
 
         dialogue.showOpenDialog(null);
 
-        controleur.importerAgence(dialogue.getSelectedFile());
-        jLabelNbAgences.setText(controleur.getListeAgences().size() + " agence(s) importée(s)");
+        try {
+            controleur.importerAgence(dialogue.getSelectedFile());
+            jLabelNbAgences.setText(controleur.getListeAgences().size() + " agence(s) importée(s)");
 
-        if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 00) {
-            jBStartTabou.setVisible(true);
+            if (controleur.getListeAgences().size() > 0 && controleur.getListeVilles().size() > 00) {
+                jBStartTabou.setVisible(true);
+            }
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_jBImportAgencesActionPerformed
 
